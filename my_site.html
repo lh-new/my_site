@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>李泓 | Li Hong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+SC:wght@300;400;600&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-pale:   #EBF4FA;
+      --blue-light:  #B8D9EE;
+      --blue-mid:    #6AAFD4;
+      --blue-deep:   #2C7DA0;
+      --blue-ink:    #1A4F6E;
+      --white:       #FAFCFE;
+      --grey-soft:   #8E9BAA;
+      --grey-line:   #DDE6ED;
+      --text-main:   #1C2B36;
+      --text-sub:    #5A7080;
+      --gold-accent: #C9A96E;
+      --card-bg:     rgba(255,255,255,0.82);
+      --shadow-sm:   0 2px 12px rgba(44,125,160,0.08);
+      --shadow-md:   0 8px 32px rgba(44,125,160,0.12);
+      --radius:      16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', 'Noto Serif SC', sans-serif;
+      background: linear-gradient(180deg, #E8F3F8 0%, #F0F7FB 50%, #E5F0F6 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== WATER-LIKE BACKGROUND ===== */
+    .water-bg {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .water-layer {
+      position: absolute;
+      inset: -50%;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(106,175,212,0.12) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 70%, rgba(44,125,160,0.10) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 50%, rgba(184,217,238,0.08) 0%, transparent 50%);
+      animation: waterRotate 30s linear infinite;
+      filter: blur(40px);
+    }
+
+    .water-layer:nth-child(2) {
+      background:
+        radial-gradient(ellipse at 70% 20%, rgba(106,175,212,0.10) 0%, transparent 35%),
+        radial-gradient(ellipse at 30% 80%, rgba(44,125,160,0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(201,169,110,0.06) 0%, transparent 30%);
+      animation: waterRotate 40s linear infinite reverse;
+      opacity: 0.7;
+    }
+
+    .water-layer:nth-child(3) {
+      background:
+        radial-gradient(ellipse at 40% 60%, rgba(184,217,238,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 40%, rgba(106,175,212,0.08) 0%, transparent 45%);
+      animation: waterRotate 50s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes waterRotate {
+      0% {
+        transform: rotate(0deg) scale(1) translate(0, 0);
+      }
+      25% {
+        transform: rotate(90deg) scale(1.05) translate(-2%, 2%);
+      }
+      50% {
+        transform: rotate(180deg) scale(1) translate(2%, -2%);
+      }
+      75% {
+        transform: rotate(270deg) scale(1.03) translate(-1%, -1%);
+      }
+      100% {
+        transform: rotate(360deg) scale(1) translate(0, 0);
+      }
+    }
+
+    /* ===== FLOATING COLOR BLOBS ===== */
+    .color-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      mix-blend-mode: multiply;
+      opacity: 0.5;
+      animation: float 25s ease-in-out infinite;
+    }
+
+    .color-blob:nth-child(4) {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(184,217,238,0.6) 0%, transparent 70%);
+      top: 10%;
+      left: 15%;
+      animation-delay: 0s;
+    }
+
+    .color-blob:nth-child(5) {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(106,175,212,0.4) 0%, transparent 70%);
+      top: 55%;
+      right: 10%;
+      animation-delay: -10s;
+    }
+
+    .color-blob:nth-child(6) {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(44,125,160,0.3) 0%, transparent 70%);
+      bottom: 15%;
+      left: 25%;
+      animation-delay: -5s;
+    }
+
+    .color-blob:nth-child(7) {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(201,169,110,0.25) 0%, transparent 70%);
+      top: 40%;
+      left: 50%;
+      animation-delay: -15s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      20% {
+        transform: translate(40px, -30px) scale(1.08);
+      }
+      40% {
+        transform: translate(-20px, 50px) scale(0.95);
+      }
+      60% {
+        transform: translate(30px, 20px) scale(1.03);
+      }
+      80% {
+        transform: translate(-35px, -15px) scale(0.98);
+      }
+    }
+
+    /* ===== RIPPLE EFFECT ===== */
+    .ripple-layer {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 25% 25%, rgba(255,255,255,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 80% at 75% 75%, rgba(255,255,255,0.10) 0%, transparent 50%);
+      animation: ripple 20s ease-in-out infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes ripple {
+      0%, 100% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.15) translate(-3%, 3%);
+        opacity: 0.5;
+      }
+    }
+
+    /* ===== LAYOUT ===== */
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* ===== HEADER / HERO ===== */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: var(--card-bg);
+      border: 1px solid rgba(184,217,238,0.6);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(12px);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .avatar-wrap {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 2px;
+      border: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 4px 20px rgba(44,125,160,0.25);
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1.5px solid var(--blue-light);
+      opacity: 0.6;
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--blue-ink);
+      line-height: 1.1;
+      letter-spacing: 1px;
+    }
+
+    .hero-name-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--grey-soft);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .hero-divider {
+      width: 36px;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--gold-accent), transparent);
+      margin: 14px 0;
+    }
+
+    .hero-bio {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    /* ===== BADGE ROW ===== */
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--blue-light);
+      color: var(--blue-deep);
+      background: rgba(235,244,250,0.8);
+      letter-spacing: 0.5px;
+      font-weight: 400;
+      transition: all 0.2s;
+    }
+
+    .badge:hover {
+      background: var(--blue-light);
+      border-color: var(--blue-mid);
+      color: var(--blue-ink);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      margin-top: 24px;
+      background: var(--card-bg);
+      border: 1px solid rgba(184,217,238,0.5);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .section-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--blue-ink);
+      letter-spacing: 1px;
+    }
+
+    /* ===== INFO GRID ===== */
+    .info-grid { display: grid; gap: 16px; }
+
+    .info-item {}
+
+    .info-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--grey-soft);
+      margin-bottom: 5px;
+      font-weight: 400;
+    }
+
+    .info-value {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .info-line {
+      width: 100%;
+      height: 1px;
+      background: var(--grey-line);
+      margin: 4px 0 0;
+    }
+
+    /* ===== INTERESTS TAGS ===== */
+    .tag-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.4);
+      color: #9A7340;
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 300;
+    }
+
+    /* ===== CHAT SECTION ===== */
+    .chat-section {
+      margin-top: 24px;
+      background: var(--card-bg);
+      border: 1px solid rgba(184,217,238,0.5);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-ink));
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-avatar-small {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.35);
+    }
+
+    .chat-header-info {}
+
+    .chat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.5px;
+    }
+
+    .chat-subtitle {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 1px;
+      letter-spacing: 0.5px;
+    }
+
+    .online-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #5DD96B;
+      margin-left: auto;
+      box-shadow: 0 0 8px rgba(93,217,107,0.6);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    /* ===== MESSAGES ===== */
+    .chat-messages {
+      padding: 20px 24px;
+      min-height: 220px;
+      max-height: 340px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--blue-light) transparent;
+    }
+
+    .msg {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      animation: msgIn 0.3s ease both;
+    }
+
+    .msg.user { flex-direction: row-reverse; }
+
+    .msg-bubble {
+      max-width: 72%;
+      padding: 10px 16px;
+      border-radius: 14px;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 300;
+    }
+
+    .msg.bot .msg-bubble {
+      background: var(--blue-pale);
+      border: 1px solid var(--blue-light);
+      color: var(--text-main);
+      border-top-left-radius: 4px;
+    }
+
+    .msg.user .msg-bubble {
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
+      color: white;
+      border-top-right-radius: 4px;
+    }
+
+    .msg-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+    }
+
+    .msg.bot .msg-icon {
+      background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
+      color: white;
+    }
+
+    .msg.user .msg-icon {
+      background: var(--grey-line);
+      color: var(--text-sub);
+    }
+
+    /* ===== QUICK QUESTIONS ===== */
+    .quick-wrap {
+      padding: 0 24px 14px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .quick-btn {
+      font-size: 0.75rem;
+      padding: 5px 13px;
+      border-radius: 20px;
+      border: 1px solid var(--blue-light);
+      background: white;
+      color: var(--blue-deep);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 300;
+    }
+
+    .quick-btn:hover {
+      background: var(--blue-light);
+      border-color: var(--blue-mid);
+      color: var(--blue-ink);
+    }
+
+    /* ===== CHAT INPUT ===== */
+    .chat-input-wrap {
+      display: flex;
+      gap: 10px;
+      padding: 14px 20px 18px;
+      border-top: 1px solid var(--grey-line);
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 24px;
+      border: 1.5px solid var(--blue-light);
+      background: var(--blue-pale);
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .chat-input:focus {
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(106,175,212,0.15);
+    }
+
+    .chat-input::placeholder { color: var(--grey-soft); }
+
+    .send-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 4px 14px rgba(44,125,160,0.35);
+    }
+
+    .send-btn svg { width: 18px; height: 18px; fill: white; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--grey-soft);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes ringPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50%       { transform: scale(1.08); opacity: 0.25; }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 540px) {
+      .hero { flex-direction: column; align-items: flex-start; gap: 18px; padding: 28px 22px; }
+      .hero-name { font-size: 2rem; }
+      .section { padding: 22px 18px; }
+      .chat-messages { max-height: 260px; }
+      .msg-bubble { max-width: 82%; }
+    }
+  </style>
+</head>
+<body>
+<!-- Water-like Background -->
+<div class="water-bg">
+  <div class="water-layer"></div>
+  <div class="water-layer"></div>
+  <div class="water-layer"></div>
+  <div class="color-blob"></div>
+  <div class="color-blob"></div>
+  <div class="color-blob"></div>
+  <div class="color-blob"></div>
+  <div class="ripple-layer"></div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <div class="avatar">泓</div>
+    </div>
+    <div class="hero-text">
+      <div class="hero-name">李 泓</div>
+      <span class="hero-name-en">Li Hong</span>
+      <div class="hero-divider"></div>
+      <div class="hero-bio">暨南大学 信息与计算科学 &middot; 准备赴美攻读 AI 方向研究生</div>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <div class="badge-row">
+    <span class="badge">国金证券 Python Dev</span>
+    <span class="badge">Vibe Coding</span>
+    <span class="badge">AI / ML</span>
+    <span class="badge">羽毛球 院赛冠军</span>
+    <span class="badge">CS2</span>
+  </div>
+
+  <!-- INFO SECTION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-dot"></div>
+      <div class="section-title">About</div>
+    </div>
+    <div class="info-grid">
+
+      <div class="info-item">
+        <div class="info-label">Currently</div>
+        <div class="info-value">在国金证券量化金融部门实习，从事 Python 开发，同时用 Vibe Coding 模式独立开发多个项目。</div>
+        <div class="info-line"></div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Education</div>
+        <div class="info-value">暨南大学 &middot; 信息与计算科学 &middot; 本科在读</div>
+        <div class="info-line"></div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Next Step</div>
+        <div class="info-value">申请美国研究生 &middot; 专攻人工智能方向</div>
+        <div class="info-line"></div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Interests</div>
+        <div class="tag-wrap">
+          <span class="tag">羽毛球 (院赛男双冠军)</span>
+          <span class="tag">钢琴</span>
+          <span class="tag">做饭</span>
+          <span class="tag">CS2</span>
+          <span class="tag">Death Stranding</span>
+          <span class="tag">旅游</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHAT SECTION -->
+  <div class="chat-section">
+    <div class="chat-header">
+      <div class="chat-avatar-small">泓</div>
+      <div class="chat-header-info">
+        <div class="chat-title">数字分身 &middot; 李泓</div>
+        <div class="chat-subtitle">问我任何问题 — 我会尽力回答</div>
+      </div>
+      <div class="online-dot"></div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot">
+        <div class="msg-icon">泓</div>
+        <div class="msg-bubble">你好！我是李泓的数字分身。你可以问我关于我的学习、工作、兴趣，或者任何你好奇的事情~</div>
+      </div>
+    </div>
+
+    <!-- QUICK QUESTIONS -->
+    <div class="quick-wrap" id="quickWrap">
+      <button class="quick-btn" onclick="askQuick('你擅长什么？')">你擅长什么？</button>
+      <button class="quick-btn" onclick="askQuick('你将来打算做什么？')">将来打算做什么？</button>
+      <button class="quick-btn" onclick="askQuick('你的人生目标是什么？')">人生目标是什么？</button>
+    </div>
+
+    <div class="chat-input-wrap">
+      <input class="chat-input" id="chatInput" type="text" placeholder="向李泓提问..." maxlength="120" />
+      <button class="send-btn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Li Hong &mdash; Made with intention.
+  </div>
+</div>
+
+<script>
+  // ===== KNOWLEDGE BASE =====
+  const kb = [
+    {
+      keys: ['擅长', '技能', '会什么', '专长', '能力'],
+      reply: '我在编程方面比较有积累，主要用 Python，目前在做量化金融相关的开发工作。羽毛球算是我最引以为傲的爱好——院赛男双冠军不是吹的哈哈。另外对 AI、机器学习也持续在学习。'
+    },
+    {
+      keys: ['将来', '未来', '打算', '计划', '毕业后', '去哪'],
+      reply: '我的计划是申请美国的研究生项目，专攻 AI 方向。希望能在学术研究和工程实践之间找到自己的位置，长远来看想在 AI 领域深耕。'
+    },
+    {
+      keys: ['人生目标', '目标', '梦想', '理想', '志向'],
+      reply: '我希望能做一些真正有价值的事情。技术层面，想在 AI 领域有所建树；生活层面，希望保持对世界的好奇心——打球、旅行、做饭、打游戏，都是我觉得让生活有质感的方式。'
+    },
+    {
+      keys: ['实习', '工作', '国金', '量化', '证券', '公司'],
+      reply: '我现在在国金证券量化金融部门实习，主要用 Python 做开发，涉及一些数据处理和策略相关的工作。这段经历让我对金融 + AI 的结合有了更实际的理解。'
+    },
+    {
+      keys: ['羽毛球', '球', '运动', '体育', '冠军'],
+      reply: '羽毛球是我最大的爱好之一！拿过院赛男双冠军，算是我比较有记忆点的经历。平时有空就会约朋友打，既锻炼身体又解压。'
+    },
+    {
+      keys: ['钢琴', '音乐', '弹琴'],
+      reply: '我会弹钢琴，算是从小学起的兴趣。现在没有以前练得勤，但闲下来还是会弹弹，给自己放松一下。'
+    },
+    {
+      keys: ['游戏', 'CS2', '死亡搁浅', '打游戏'],
+      reply: '主玩 CS2 和 Death Stranding。CS2 是竞技向，比较刺激；Death Stranding 则完全相反，是一种很独特的沉浸体验，很喜欢那种孤独又治愈的感觉。'
+    },
+    {
+      keys: ['做饭', '烹饪', '厨艺', '美食'],
+      reply: '我挺喜欢做饭的，感觉做菜和写代码有点像——都需要逻辑，但又有创意空间。做好一道菜的满足感挺真实的哈哈。'
+    },
+    {
+      keys: ['旅游', '旅行', '去过', '哪里'],
+      reply: '我很喜欢旅行，探索新地方、感受不同文化对我来说是很重要的体验。去美国读研之后也希望能多走走。'
+    },
+    {
+      keys: ['学校', '暨南', '大学', '专业', '读书'],
+      reply: '我在暨南大学读信息与计算科学，这个专业让我打下了扎实的数学和计算机基础。暨大在广州，校园环境挺好的。'
+    },
+    {
+      keys: ['你好', 'hello', 'hi', '嗨', '在吗'],
+      reply: '你好！有什么想了解的尽管问，我会认真回答的~'
+    },
+    {
+      keys: ['vibe', 'coding', '项目', '开发', '副业'],
+      reply: '最近在用 Vibe Coding 的方式——也就是 AI 辅助编程——独立开发几个项目，效率提升非常明显。我觉得这是未来开发的重要方式，很享受这个过程。'
+    }
+  ];
+
+  function getReply(text) {
+    const t = text.trim().toLowerCase();
+    for (const item of kb) {
+      if (item.keys.some(k => t.includes(k))) return item.reply;
+    }
+    return '这个问题很有意思，但我的数字分身暂时没有这方面的设定。你可以试着问问我的工作、兴趣或者未来规划~';
+  }
+
+  function appendMsg(text, role) {
+    const wrap = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = 'msg ' + role;
+    const icon = document.createElement('div');
+    icon.className = 'msg-icon';
+    icon.textContent = role === 'bot' ? '泓' : 'You';
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    bubble.textContent = text;
+    div.appendChild(icon);
+    div.appendChild(bubble);
+    wrap.appendChild(div);
+    wrap.scrollTop = wrap.scrollHeight;
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    appendMsg(text, 'user');
+    input.value = '';
+    // hide quick btns after first interaction
+    document.getElementById('quickWrap').style.display = 'none';
+    setTimeout(() => {
+      appendMsg(getReply(text), 'bot');
+    }, 480);
+  }
+
+  function askQuick(q) {
+    appendMsg(q, 'user');
+    document.getElementById('quickWrap').style.display = 'none';
+    setTimeout(() => {
+      appendMsg(getReply(q), 'bot');
+    }, 480);
+  }
+
+  document.getElementById('chatInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
+</body>
+</html>
