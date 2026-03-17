@@ -617,6 +617,170 @@
       .chat-messages { max-height: 260px; }
       .msg-bubble { max-width: 82%; }
     }
+
+    /* ===== PROJECTS SECTION ===== */
+    .projects-section {
+      margin-top: 24px;
+      background: var(--card-bg);
+      border: 1px solid rgba(184,217,238,0.5);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      animation: fadeUp 0.7s 0.18s ease both;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--blue-light);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .project-card:hover {
+      background: rgba(255,255,255,0.9);
+      border-color: var(--blue-mid);
+      box-shadow: 0 6px 20px rgba(44,125,160,0.15);
+      transform: translateY(-2px);
+    }
+
+    .project-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-bottom: 1px solid var(--grey-line);
+      padding-bottom: 12px;
+    }
+
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--blue-ink);
+      letter-spacing: 0.5px;
+    }
+
+    .project-tech {
+      font-size: 0.7rem;
+      color: var(--grey-soft);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .project-desc {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-sub);
+      line-height: 1.8;
+      flex: 1;
+    }
+
+    .project-tag-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: rgba(106,175,212,0.12);
+      border: 1px solid rgba(106,175,212,0.3);
+      color: var(--blue-deep);
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 540px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .projects-section { padding: 22px 18px; }
+    }
+
+    /* ===== CHAT FLOAT BUTTON ===== */
+    .chat-float-btn {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
+      border: 2px solid rgba(255,255,255,0.8);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(44,125,160,0.35);
+      transition: all 0.3s ease;
+      z-index: 100;
+      animation: chatFloatPulse 2s ease-in-out infinite;
+    }
+
+    .chat-float-btn:hover {
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 28px rgba(44,125,160,0.5);
+    }
+
+    .chat-float-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    .chat-float-label {
+      font-size: 0.6rem;
+      color: white;
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    @keyframes chatFloatPulse {
+      0%, 100% {
+        box-shadow: 0 4px 20px rgba(44,125,160,0.35);
+      }
+      50% {
+        box-shadow: 0 4px 28px rgba(106,175,212,0.5);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .chat-float-btn {
+        right: 16px;
+        width: 48px;
+        height: 48px;
+      }
+      .chat-float-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+      .chat-float-label {
+        font-size: 0.55rem;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .chat-float-btn {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -644,7 +808,13 @@
       <div class="hero-name">李 泓</div>
       <span class="hero-name-en">Li Hong</span>
       <div class="hero-divider"></div>
-      <div class="hero-bio">暨南大学 信息与计算科学 &middot; 准备赴美攻读 AI 方向研究生</div>
+      <div class="hero-bio">暨南大学 & 伯明翰大学  信息与计算科学</div>
+      <div class="hero-contact" style="font-family:'Noto Serif SC',serif;font-size:0.82rem;font-weight:300;color:var(--text-sub);line-height:1.8;margin-top:8px;">
+        <span style="opacity:0.7">📞</span> +86 17725633824
+      </div>
+      <div class="hero-contact" style="font-family:'Noto Serif SC',serif;font-size:0.82rem;font-weight:300;color:var(--text-sub);line-height:1.8;margin-top:4px;">
+        <span style="opacity:0.7">✉️</span> kiomin18@gmail.com
+      </div>
     </div>
   </div>
 
@@ -692,6 +862,56 @@
           <span class="tag">CS2</span>
           <span class="tag">Death Stranding</span>
           <span class="tag">旅游</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROJECTS SECTION -->
+  <div class="section projects-section">
+    <div class="section-header">
+      <div class="section-dot"></div>
+      <div class="section-title">Projects</div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">AI 废料热值估计系统</div>
+          <div class="project-tech">Python · ViT · Swin Transformer</div>
+        </div>
+        <p class="project-desc">主导 AI 驱动的废料热值预测项目，构建 500+ COCO 格式数据集，训练深度学习模型，实现端到端 AI 落地。搭建内部 AI Agent 自动化周报生成，提升 15% 报告效率。</p>
+        <div class="project-tag-row">
+          <span class="project-tag">深度学习</span>
+          <span class="project-tag">数据集构建</span>
+          <span class="project-tag">全栈落地</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">SHAP 可解释性改进研究</div>
+          <div class="project-tech">Python · XAI · 统计建模</div>
+        </div>
+        <p class="project-desc">针对 SHAP 方法在相关特征归因中的误差问题，提出「SHAP + p-value」加权校正方法，估计提升 10% 可解释性精度，复现 LIME/SHAP 实验并完成综合研究报告。</p>
+        <div class="project-tag-row">
+          <span class="project-tag">可解释 AI</span>
+          <span class="project-tag">算法改进</span>
+          <span class="project-tag">学术研究</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">ESG 投资组合优化研究</div>
+          <div class="project-tech">Python · Markowitz · Excel VBA</div>
+        </div>
+        <p class="project-desc">应用 Markowitz 模型和指数模型对 S&P 500 中 21 只股票进行投资组合优化，在不同约束条件下绘制有效前沿和 CAL，完成可解释 AI 在投资组合优化中的应用研究论文。</p>
+        <div class="project-tag-row">
+          <span class="project-tag">量化金融</span>
+          <span class="project-tag">投资组合</span>
+          <span class="project-tag">论文撰写</span>
         </div>
       </div>
 
@@ -836,9 +1056,22 @@
     }, 480);
   }
 
+  function scrollToChat() {
+    const chatSection = document.querySelector('.chat-section');
+    chatSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   document.getElementById('chatInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') sendMessage();
   });
 </script>
+  <!-- CHAT FLOAT BUTTON -->
+  <button class="chat-float-btn" onclick="scrollToChat()" title="联系李泓">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+    </svg>
+    <span class="chat-float-label">聊天</span>
+  </button>
+
 </body>
 </html>
