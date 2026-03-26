@@ -960,6 +960,7 @@
 
 <script>
   // ===== KNOWLEDGE BASE =====
+  // 数字分身说明书
   const kb = [
     {
       keys: ['你是谁', '你是', '自我介绍', '介绍一下'],
@@ -1034,16 +1035,36 @@
     '这个问题我需要更多数据才能回答哈哈。不过你可以直接联系我聊聊！'
   ];
 
-  function getReply(text) {
-    const t = text.trim().toLowerCase();
+  // 调用后端 API 获取回复
+  async function getReplyFromBackend(text) {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: text })
+      });
+      const data = await response.json();
+      return data.reply;
+    } catch (error) {
+      console.log('后端不可用，使用本地知识库');
+      return null;
+    }
+  }
 
-    // 先尝试匹配知识库
+  // 本地知识库匹配（fallback）
+  function getReplyFromKB(text) {
+    const t = text.trim().toLowerCase();
     for (const item of kb) {
       if (item.keys.some(k => t.includes(k))) return item.reply;
     }
-
-    // 如果没有匹配到，随机返回一个未知回复
     return unknownReplies[Math.floor(Math.random() * unknownReplies.length)];
+  }
+
+  // 主函数：先试后端，不行再用本地
+  async function getReply(text) {
+    const backendReply = await getReplyFromBackend(text);
+    if (backendReply) return backendReply;
+    return getReplyFromKB(text);
   }
 
   function appendMsg(text, role) {
@@ -1062,7 +1083,7 @@
     wrap.scrollTop = wrap.scrollHeight;
   }
 
-  function sendMessage() {
+  async function sendMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
     if (!text) return;
@@ -1070,16 +1091,18 @@
     input.value = '';
     // hide quick btns after first interaction
     document.getElementById('quickWrap').style.display = 'none';
-    setTimeout(() => {
-      appendMsg(getReply(text), 'bot');
+    setTimeout(async () => {
+      const reply = await getReply(text);
+      appendMsg(reply, 'bot');
     }, 480);
   }
 
-  function askQuick(q) {
+  async function askQuick(q) {
     appendMsg(q, 'user');
     document.getElementById('quickWrap').style.display = 'none';
+    const reply = await getReply(q);
     setTimeout(() => {
-      appendMsg(getReply(q), 'bot');
+      appendMsg(reply, 'bot');
     }, 480);
   }
 
