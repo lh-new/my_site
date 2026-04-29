@@ -50,11 +50,14 @@ SYSTEM_PROMPT = """
 答：我比较擅长把复杂问题讲清楚，也比较关注 AI 应用、内容表达和知识整理这几个方向。生活上擅长羽毛球、钢琴和做粤菜，打游戏也不错（CS2，空洞骑士等）
 """
 
-@app.route("/chat", methods=["POST"])
+@app.route("/chat", methods=["POST", "OPTIONS"])
 def chat():
     """
     接收前端发来的问题，调用 Qwen 大模型返回回复
     """
+    if request.method == "OPTIONS":
+        return "", 204
+
     data = request.json
     question = data.get("question", "")
 
