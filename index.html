@@ -338,17 +338,18 @@
     }
 
     /* ===== INFO GRID ===== */
-    .info-grid { display: grid; gap: 16px; }
+    .info-grid { display: grid; gap: 20px; }
 
     .info-item {}
 
     .info-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--grey-soft);
-      margin-bottom: 5px;
-      font-weight: 400;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--blue-mid);
+      margin-bottom: 8px;
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     .info-value {
@@ -356,7 +357,7 @@
       font-size: 0.9rem;
       color: var(--text-main);
       line-height: 1.7;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .info-line {
@@ -862,43 +863,44 @@
   <div class="section">
     <div class="section-header">
       <div class="section-dot"></div>
-      <div class="section-title">About</div>
+      <div class="section-title" data-en="Advantages" data-zh="核心优势">Advantages</div>
     </div>
     <div class="info-grid">
 
       <div class="info-item">
-        <div class="info-label">Currently</div>
-        <div class="info-value" data-en="Interning at Guojin Securities' quantitative finance department, working on Python development while independently building multiple projects using Vibe Coding." data-zh="在国金证券量化金融部门实习，从事 Python 开发，同时用 Vibe Coding 模式独立开发多个项目。">Interning at Guojin Securities' quantitative finance department, working on Python development while independently building multiple projects using Vibe Coding.</div>
+        <div class="info-label">01</div>
+        <div class="info-value" data-en="End-to-End AI Development &amp; Deployment &mdash; Built company's first waste dataset (500+ COCO images), trained ViT &rarr; Swin &rarr; GLIP models, deployed full-stack AI pipeline with 15% reporting efficiency gain." data-zh="端到端 AI 开发与部署 &mdash; 构建企业首个固废数据集（500+ COCO 标注），训练 ViT &rarr; Swin &rarr; GLIP 模型迭代，独立部署全栈 AI 流水线，报告效率提升 15%。">End-to-End AI Development &amp; Deployment &mdash; Built company's first waste dataset (500+ COCO images), trained ViT &rarr; Swin &rarr; GLIP models, deployed full-stack AI pipeline with 15% reporting efficiency gain.</div>
         <div class="info-line"></div>
       </div>
 
       <div class="info-item">
-        <div class="info-label">Education</div>
-        <div class="info-value" data-en="Jinan University · Information and Computing Science · Undergraduate" data-zh="暨南大学 &middot; 信息与计算科学 &middot; 本科在读">Jinan University · Information and Computing Science · Undergraduate</div>
+        <div class="info-label">02</div>
+        <div class="info-value" data-en="Quantitative Finance Engineering &mdash; At Guojin Securities: automated data pipelines (50+ emails/day, 95%+ accuracy), risk monitoring system covering macro assets &amp; 6+ investment portfolios." data-zh="量化金融工程能力 &mdash; 国金证券实习：自动化数据管道（50+ 邮件/日，准确率 95%+），搭建覆盖宏观资产与 6+ 投资组合的风险监控系统。">Quantitative Finance Engineering &mdash; At Guojin Securities: automated data pipelines (50+ emails/day, 95%+ accuracy), risk monitoring system covering macro assets &amp; 6+ investment portfolios.</div>
         <div class="info-line"></div>
       </div>
 
       <div class="info-item">
-        <div class="info-label">Next Step</div>
-        <div class="info-value" data-en="Applying for US graduate school · Specializing in Artificial Intelligence" data-zh="申请美国研究生 &middot; 专攻人工智能方向">Applying for US graduate school · Specializing in Artificial Intelligence</div>
+        <div class="info-label">03</div>
+        <div class="info-value" data-en="Explainable AI (XAI) Research &mdash; Proposed &laquo;SHAP + p-value&raquo; weighted correction, achieving ~10% improvement in interpretability accuracy; research accepted by CONF-SPML_TJ 2026." data-zh="可解释 AI（XAI）研究 &mdash; 提出「SHAP + p值」加权修正方法，可解释性精度提升约 10%，相关论文被 CONF-SPML_TJ 2026 收录。">Explainable AI (XAI) Research &mdash; Proposed &laquo;SHAP + p-value&raquo; weighted correction, achieving ~10% improvement in interpretability accuracy; research accepted by CONF-SPML_TJ 2026.</div>
         <div class="info-line"></div>
       </div>
 
       <div class="info-item">
-        <div class="info-label">Interests</div>
-        <div class="tag-wrap">
-          <span class="tag" data-en="Badminton (College Men's Doubles Champion)" data-zh="羽毛球 (院赛男双冠军)">Badminton (College Men's Doubles Champion)</span>
-          <span class="tag" data-en="Piano" data-zh="钢琴">Piano</span>
-          <span class="tag" data-en="Cooking" data-zh="做饭">Cooking</span>
-          <span class="tag">CS2</span>
-          <span class="tag">Death Stranding</span>
-          <span class="tag" data-en="Travel" data-zh="旅游">Travel</span>
-        </div>
+        <div class="info-label">04</div>
+        <div class="info-value" data-en="Strong Mathematical Foundation &mdash; GPA 4.0/4.0, ranked 5/68. Core courses: Statistics (93), Algorithms (92), Linear Algebra (95), Information Theory (92)." data-zh="扎实的数理基础 &mdash; GPA 4.0/4.0，专业排名 5/68。核心课程：统计学（93）、算法设计（92）、线性代数（95）、信息论（92）。">Strong Mathematical Foundation &mdash; GPA 4.0/4.0, ranked 5/68. Core courses: Statistics (93), Algorithms (92), Linear Algebra (95), Information Theory (92).</div>
+        <div class="info-line"></div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">05</div>
+        <div class="info-value" data-en="Bilingual Communication &mdash; IELTS 7.5, Jinan University &amp; University of Birmingham Joint Institute. Fluent in English, Mandarin, and Cantonese." data-zh="中英双语沟通能力 &mdash; 雅思 7.5，暨南大学 &middot; 伯明翰大学联合学院背景。熟练使用英语、普通话和粤语进行工作交流。">Bilingual Communication &mdash; IELTS 7.5, Jinan University &amp; University of Birmingham Joint Institute. Fluent in English, Mandarin, and Cantonese.</div>
+        <div class="info-line"></div>
       </div>
 
     </div>
   </div>
 
+  
   <!-- PROJECTS SECTION -->
   <div class="section projects-section">
     <div class="section-header">
