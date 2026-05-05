@@ -342,6 +342,57 @@
 
     .info-item {}
 
+    /* Clickable advantage items (01-03) */
+    .info-item.linkable {
+      cursor: pointer;
+      transition: all 0.25s ease;
+      padding: 8px 12px;
+      margin: -8px -12px 0;
+      border-radius: 8px;
+    }
+
+    .info-item.linkable:hover {
+      background: rgba(106,175,212,0.06);
+      box-shadow: 0 2px 12px rgba(44,125,160,0.08);
+      transform: translateX(4px);
+    }
+
+    .info-item.linkable::after {
+      content: '\2192';
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue-mid);
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+      font-size: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .info-item.linkable:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(4px);
+    }
+
+    .info-item.linkable { position: relative; }
+
+    /* Non-clickable advantages (04-05) — subtle hint effect */
+    .info-item.nolink:hover {
+      background: rgba(142,155,170,0.04);
+    }
+
+    /* Highlight pulse on target project card */
+    @keyframes cardHighlight {
+      0%   { border-color: var(--blue-mid); box-shadow: 0 0 0 0 rgba(106,175,212,0.4); }
+      50%  { border-color: var(--blue-mid); box-shadow: 0 0 0 6px rgba(106,175,212,0.15); }
+      100% { border-color: var(--blue-light); box-shadow: none; }
+    }
+
+    .project-card.highlight {
+      animation: cardHighlight 1.5s ease;
+    }
+
     .info-label {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem;
@@ -867,31 +918,31 @@
     </div>
     <div class="info-grid">
 
-      <div class="info-item">
+      <div class="info-item linkable" data-target="project-ai">
         <div class="info-label">01</div>
         <div class="info-value" data-en="End-to-End AI Development &amp; Deployment &mdash; Built company's first waste dataset (500+ COCO images), trained ViT &rarr; Swin &rarr; GLIP models, deployed full-stack AI pipeline with 15% reporting efficiency gain." data-zh="端到端 AI 开发与部署 &mdash; 构建企业首个固废数据集（500+ COCO 标注），训练 ViT &rarr; Swin &rarr; GLIP 模型迭代，独立部署全栈 AI 流水线，报告效率提升 15%。">End-to-End AI Development &amp; Deployment &mdash; Built company's first waste dataset (500+ COCO images), trained ViT &rarr; Swin &rarr; GLIP models, deployed full-stack AI pipeline with 15% reporting efficiency gain.</div>
         <div class="info-line"></div>
       </div>
 
-      <div class="info-item">
+      <div class="info-item linkable" data-target="project-sinolink">
         <div class="info-label">02</div>
         <div class="info-value" data-en="Quantitative Finance Engineering &mdash; At Sinolink Securities Co., Ltd.: automated data pipelines (50+ emails/day, 95%+ accuracy), risk monitoring system covering macro assets &amp; 6+ investment portfolios." data-zh="量化金融工程能力 &mdash; 国金证券实习：自动化数据管道（50+ 邮件/日，准确率 95%+），搭建覆盖宏观资产与 6+ 投资组合的风险监控系统。">Quantitative Finance Engineering &mdash; At Sinolink Securities Co., Ltd.: automated data pipelines (50+ emails/day, 95%+ accuracy), risk monitoring system covering macro assets &amp; 6+ investment portfolios.</div>
         <div class="info-line"></div>
       </div>
 
-      <div class="info-item">
+      <div class="info-item linkable" data-target="project-xai">
         <div class="info-label">03</div>
         <div class="info-value" data-en="Explainable AI (XAI) Research &mdash; Proposed &laquo;SHAP + p-value&raquo; weighted correction, achieving ~10% improvement in interpretability accuracy; research accepted by CONF-SPML_TJ 2026." data-zh="可解释 AI（XAI）研究 &mdash; 提出「SHAP + p值」加权修正方法，可解释性精度提升约 10%，相关论文被 CONF-SPML_TJ 2026 收录。">Explainable AI (XAI) Research &mdash; Proposed &laquo;SHAP + p-value&raquo; weighted correction, achieving ~10% improvement in interpretability accuracy; research accepted by CONF-SPML_TJ 2026.</div>
         <div class="info-line"></div>
       </div>
 
-      <div class="info-item">
+      <div class="info-item nolink">
         <div class="info-label">04</div>
         <div class="info-value" data-en="Strong Mathematical Foundation &mdash; GPA 4.0/4.0, ranked 5/68. Core courses: Statistics (93), Algorithms (92), Linear Algebra (95), Information Theory (92)." data-zh="扎实的数理基础 &mdash; GPA 4.0/4.0，专业排名 5/68。核心课程：统计学（93）、算法设计（92）、线性代数（95）、信息论（92）。">Strong Mathematical Foundation &mdash; GPA 4.0/4.0, ranked 5/68. Core courses: Statistics (93), Algorithms (92), Linear Algebra (95), Information Theory (92).</div>
         <div class="info-line"></div>
       </div>
 
-      <div class="info-item">
+      <div class="info-item nolink">
         <div class="info-label">05</div>
         <div class="info-value" data-en="Bilingual Communication &mdash; IELTS 7.5, Jinan University &amp; University of Birmingham Joint Institute. Fluent in English, Mandarin, and Cantonese." data-zh="中英双语沟通能力 &mdash; 雅思 7.5，暨南大学 &middot; 伯明翰大学联合学院背景。熟练使用英语、普通话和粤语进行工作交流。">Bilingual Communication &mdash; IELTS 7.5, Jinan University &amp; University of Birmingham Joint Institute. Fluent in English, Mandarin, and Cantonese.</div>
         <div class="info-line"></div>
@@ -909,7 +960,7 @@
     </div>
     <div class="projects-grid">
 
-      <div class="project-card">
+      <div class="project-card" id="project-ai">
         <div class="project-header">
           <div class="project-title" data-en="AI Waste Heat Value Estimation System" data-zh="AI 废料热值估计系统">AI Waste Heat Value Estimation System</div>
           <div class="project-tech">Python · ViT · Swin Transformer</div>
@@ -922,7 +973,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" id="project-xai">
         <div class="project-header">
           <div class="project-title" data-en="SHAP Interpretability Improvement Research" data-zh="SHAP 可解释性改进研究">SHAP Interpretability Improvement Research</div>
           <div class="project-tech">Python · XAI · Statistical Modeling</div>
@@ -935,7 +986,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" id="project-esg">
         <div class="project-header">
           <div class="project-title" data-en="ESG Portfolio Optimization Research" data-zh="ESG 投资组合优化研究">ESG Portfolio Optimization Research</div>
           <div class="project-tech">Python · Markowitz · Excel VBA</div>
@@ -948,7 +999,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" id="project-sinolink">
         <div class="project-header">
           <div class="project-title" data-en="Sinolink Securities Quantitative Development Internship" data-zh="国金证券量化开发实习">国金证券量化开发实习</div>
           <div class="project-tech">Python · Pandas · Risk Monitoring</div>
@@ -1242,6 +1293,19 @@
       toggleLang(); // toggle from default 'en' to saved language
     }
   })();
+
+  // Advantage-to-project navigation
+  document.querySelectorAll('.info-item.linkable').forEach(item => {
+    item.addEventListener('click', () => {
+      const targetId = item.getAttribute('data-target');
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.project-card.highlight').forEach(c => c.classList.remove('highlight'));
+      setTimeout(() => target.classList.add('highlight'), 400);
+      setTimeout(() => target.classList.remove('highlight'), 2200);
+    });
+  });
 </script>
   <!-- CHAT FLOAT BUTTON -->
   <button class="chat-float-btn" onclick="scrollToChat()" title="联系李泓">
