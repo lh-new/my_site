@@ -892,7 +892,8 @@
       <div class="avatar"><img src="个人照.jpg" alt="李泓"></div>
     </div>
     <div class="hero-text">
-      <div class="hero-name" style="font-family: 'Times New Roman', serif;">Thomas Lee</div>
+      <div class="hero-name" data-en="Thomas Lee" data-zh="李 泓" style="font-family: 'Times New Roman', serif;">Thomas Lee</div>
+      <span class="hero-name-en" style="display:none;">Li Hong</span>
       <div class="hero-divider"></div>
       <div class="hero-bio" data-en="Jinan University & University of Birmingham · Information and Computing Science" data-zh="暨南大学 & 伯明翰大学  信息与计算科学">Jinan University & University of Birmingham · Information and Computing Science</div>
       <div class="hero-contact" style="font-family:'Noto Serif SC',serif;font-size:0.82rem;font-weight:300;color:var(--text-sub);line-height:1.8;margin-top:8px;">
@@ -1246,6 +1247,14 @@
     document.querySelectorAll('[data-en][data-zh]').forEach(el => {
       el.textContent = el.getAttribute('data-' + currentLang);
     });
+
+    // Toggle pinyin visibility
+    const pinyin = document.querySelector('.hero-name-en');
+    if (pinyin) pinyin.style.display = currentLang === 'en' ? 'none' : '';
+
+    // Toggle hero name font
+    const heroName = document.querySelector('.hero-name');
+    if (heroName) heroName.style.fontFamily = currentLang === 'en' ? "'Times New Roman', serif" : "";
 
     // Update input placeholders
     const input = document.getElementById('chatInput');
