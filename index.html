@@ -21,6 +21,9 @@
       --grey-line:   #DDE6ED;
       --text-main:   #1C2B36;
       --text-sub:    #5A7080;
+      --coral:      #FF6B6B;
+      --teal:       #4ECDC4;
+      --violet:     #9B8EC4;
       --gold-accent: #C9A96E;
       --card-bg:     rgba(255,255,255,0.82);
       --shadow-sm:   0 2px 12px rgba(44,125,160,0.08);
@@ -405,7 +408,25 @@
       margin-bottom: 8px;
       letter-spacing: 0;
       text-transform: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+
+    .info-label::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
+    .info-item:nth-child(1) .info-label::before { background: var(--blue-mid); }
+    .info-item:nth-child(2) .info-label::before { background: var(--gold-accent); }
+    .info-item:nth-child(3) .info-label::before { background: var(--coral); }
+    .info-item:nth-child(4) .info-label::before { background: var(--teal); }
+    .info-item:nth-child(5) .info-label::before { background: var(--violet); }
 
     .info-value {
       font-family: 'Noto Serif SC', serif;
@@ -642,6 +663,126 @@
 
     .send-btn svg { width: 18px; height: 18px; fill: white; }
 
+    /* ===== SIDEBAR NAV ===== */
+    .sidebar-nav {
+      position: fixed;
+      left: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 200;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--grey-soft);
+      font-size: 0.78rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: all 0.25s ease;
+      padding: 4px 0;
+      white-space: nowrap;
+    }
+
+    .nav-item:hover {
+      color: var(--blue-deep);
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid var(--grey-soft);
+      background: transparent;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-item:hover .nav-dot {
+      border-color: var(--blue-mid);
+      background: rgba(106,175,212,0.2);
+    }
+
+    .nav-item.active .nav-dot {
+      border-color: var(--blue-mid);
+      background: var(--blue-mid);
+      box-shadow: 0 0 6px rgba(106,175,212,0.4);
+    }
+
+    .nav-item.active {
+      color: var(--blue-ink);
+      font-weight: 600;
+    }
+
+    /* Mobile nav trigger */
+    .nav-trigger {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 56px;
+      background: var(--card-bg);
+      border: 1px solid var(--blue-light);
+      border-left: none;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      z-index: 201;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 2px 0 8px rgba(44,125,160,0.1);
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .nav-trigger::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 6px solid var(--blue-deep);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-trigger.open::before {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar-nav {
+        left: 0;
+        top: auto;
+        bottom: 0;
+        transform: translateX(-100%);
+        flex-direction: column;
+        background: var(--card-bg);
+        backdrop-filter: blur(16px);
+        border-right: 1px solid var(--blue-light);
+        padding: 32px 18px 32px 14px;
+        border-radius: 0 12px 12px 0;
+        box-shadow: 4px 0 20px rgba(44,125,160,0.12);
+        transition: transform 0.3s ease;
+        gap: 18px;
+      }
+
+      .sidebar-nav.open {
+        transform: translateX(0);
+      }
+
+      .nav-trigger {
+        display: flex;
+      }
+    }
+
     /* ===== FOOTER ===== */
     .footer {
       text-align: center;
@@ -703,13 +844,31 @@
     .project-card {
       background: rgba(255,255,255,0.7);
       border: 1px solid var(--blue-light);
+      border-top: 2.5px solid var(--blue-mid);
       border-radius: 12px;
       padding: 20px;
       transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      position: relative;
+      overflow: hidden;
     }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 12px 12px 0 0;
+    }
+
+    #project-ai::before { background: linear-gradient(90deg, var(--blue-mid), var(--coral)); }
+    #project-xai::before { background: linear-gradient(90deg, var(--gold-accent), var(--teal)); }
+    #project-esg::before { background: linear-gradient(90deg, var(--violet), var(--blue-mid)); }
+    #project-sinolink::before { background: linear-gradient(90deg, var(--blue-mid), var(--gold-accent)); }
 
     .project-card:hover {
       background: rgba(255,255,255,0.9);
@@ -867,6 +1026,15 @@
         display: none;
       }
     }
+
+    /* Desktop: add left margin for sidebar */
+    @media (min-width: 1100px) {
+      .page-wrap {
+        max-width: 720px;
+        margin-left: 120px;
+        margin-right: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -882,10 +1050,31 @@
   <div class="ripple-layer"></div>
 </div>
 
+<!-- Sidebar Navigation -->
+<nav class="sidebar-nav" id="sidebarNav">
+  <a href="#hero" class="nav-item active" data-section="hero">
+    <span class="nav-dot"></span>
+    <span class="nav-text" data-en="Profile" data-zh="个人资料">Profile</span>
+  </a>
+  <a href="#advantages" class="nav-item" data-section="advantages">
+    <span class="nav-dot"></span>
+    <span class="nav-text" data-en="Advantages" data-zh="核心优势">Advantages</span>
+  </a>
+  <a href="#projects" class="nav-item" data-section="projects">
+    <span class="nav-dot"></span>
+    <span class="nav-text" data-en="Projects" data-zh="项目作品">Projects</span>
+  </a>
+  <a href="#chat" class="nav-item" data-section="chat">
+    <span class="nav-dot"></span>
+    <span class="nav-text" data-en="Chat" data-zh="数字分身">Chat</span>
+  </a>
+</nav>
+<button class="nav-trigger" id="navTrigger" onclick="toggleNav()"></button>
+
 <div class="page-wrap">
 
   <!-- HERO -->
-  <div class="hero">
+  <div class="hero" id="hero">
     <button class="lang-toggle" id="langToggle" onclick="toggleLang()">中文</button>
     <div class="avatar-wrap">
       <div class="avatar-ring"></div>
@@ -906,7 +1095,7 @@
   </div>
 
   <!-- INFO SECTION -->
-  <div class="section">
+  <div class="section" id="advantages">
     <div class="section-header">
       <div class="section-dot"></div>
       <div class="section-title" data-en="Advantages" data-zh="核心优势">Advantages</div>
@@ -948,10 +1137,10 @@
 
   
   <!-- PROJECTS SECTION -->
-  <div class="section projects-section">
+  <div class="section projects-section" id="projects">
     <div class="section-header">
       <div class="section-dot"></div>
-      <div class="section-title">Projects</div>
+      <div class="section-title" data-en="Projects" data-zh="项目作品">Projects</div>
     </div>
     <div class="projects-grid">
 
@@ -1011,7 +1200,7 @@
   </div>
 
   <!-- CHAT SECTION -->
-  <div class="chat-section">
+  <div class="chat-section" id="chat">
     <div class="chat-header">
       <div class="chat-avatar-small">泓</div>
       <div class="chat-header-info">
@@ -1287,6 +1476,11 @@
 
     // Save preference
     localStorage.setItem('lang', currentLang);
+
+    // Update sidebar nav labels
+    document.querySelectorAll('#sidebarNav .nav-text').forEach(el => {
+      el.textContent = el.getAttribute('data-' + currentLang);
+    });
   }
 
   // Restore saved language preference
@@ -1308,6 +1502,59 @@
       setTimeout(() => target.classList.add('highlight'), 400);
       setTimeout(() => target.classList.remove('highlight'), 2200);
     });
+  });
+
+  // ===== SIDEBAR NAVIGATION =====
+  function toggleNav() {
+    const nav = document.getElementById('sidebarNav');
+    const trigger = document.getElementById('navTrigger');
+    nav.classList.toggle('open');
+    trigger.classList.toggle('open');
+  }
+
+  // Close mobile nav when clicking outside
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      const nav = document.getElementById('sidebarNav');
+      const trigger = document.getElementById('navTrigger');
+      if (!nav.contains(e.target) && !trigger.contains(e.target) && nav.classList.contains('open')) {
+        toggleNav();
+      }
+    }
+  });
+
+  // Nav item clicks
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = item.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Close mobile nav
+      if (window.innerWidth <= 768) {
+        const nav = document.getElementById('sidebarNav');
+        if (nav.classList.contains('open')) toggleNav();
+      }
+    });
+  });
+
+  // IntersectionObserver for active section tracking
+  const navSections = ['hero', 'advantages', 'projects', 'chat'];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id;
+        document.querySelectorAll('.nav-item').forEach(item => {
+          item.classList.toggle('active', item.getAttribute('data-section') === sectionId);
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -40% 0px' });
+
+  navSections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
   });
 </script>
   <!-- CHAT FLOAT BUTTON -->
