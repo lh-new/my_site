@@ -666,7 +666,7 @@
     /* ===== SIDEBAR NAV ===== */
     .sidebar-nav {
       position: fixed;
-      left: 32px;
+      left: 16px;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
@@ -928,6 +928,34 @@
       letter-spacing: 0.5px;
     }
 
+    /* Tag color variants per project */
+    #project-ai .project-tag {
+      background: rgba(106,175,212,0.12);
+      border-color: rgba(106,175,212,0.3);
+      color: var(--blue-deep);
+    }
+    #project-xai .project-tag {
+      background: rgba(201,169,110,0.10);
+      border-color: rgba(201,169,110,0.35);
+      color: #8B6914;
+    }
+    #project-esg .project-tag {
+      background: rgba(78,205,196,0.10);
+      border-color: rgba(78,205,196,0.35);
+      color: #2A8A83;
+    }
+    #project-sinolink .project-tag {
+      background: rgba(155,142,196,0.10);
+      border-color: rgba(155,142,196,0.35);
+      color: #5C4F8A;
+    }
+
+    /* Gradient bar glow on hover */
+    .project-card:hover::before {
+      filter: brightness(1.25) saturate(1.2);
+      box-shadow: 0 0 12px rgba(106,175,212,0.3);
+    }
+
     @media (max-width: 540px) {
       .projects-grid { grid-template-columns: 1fr; }
       .projects-section { padding: 22px 18px; }
@@ -1027,12 +1055,10 @@
       }
     }
 
-    /* Desktop: add left margin for sidebar */
+    /* Desktop: add left padding for sidebar, keep centered */
     @media (min-width: 1100px) {
       .page-wrap {
-        max-width: 720px;
-        margin-left: 120px;
-        margin-right: auto;
+        padding-left: 120px;
       }
     }
   </style>
