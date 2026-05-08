@@ -1317,68 +1317,76 @@
   // Knowledge base with bilingual keys and replies
   const kb = [
     {
-      keys: ['你是谁', '你是', '自我介绍', '介绍一下', 'who are you', 'introduce yourself', 'about you'],
+      keys: ['你是谁', '你是', '自我介绍', '介绍一下', '叫什么', '名字', 'who are you', 'introduce yourself', 'about you', 'your name', 'what is your name'],
       reply: { en: "I'm Li Hong's digital clone~ Currently interning at Sinolink Securities in quantitative finance, mainly doing Python development. Free time I play badminton, play piano, or jump into CS2. Ask me anything!", zh: '我是李泓的数字分身~ 我目前在国金证券量化金融部门实习，平时主要用 Python 做开发，空闲时间喜欢打羽毛球、弹钢琴，或者来两把 CS2。有什么问题尽管问我！' }
     },
     {
-      keys: ['擅长', '技能', '会什么', '专长', '能力', '强项', 'good at', 'skills', 'strengths', 'expertise'],
+      keys: ['擅长', '技能', '会什么', '专长', '能力', '强项', 'good at', 'skills', 'strengths', 'expertise', 'what can you do', 'capabilities'],
       reply: { en: "I'm pretty good at Python programming — that's what I do at my quantitative finance internship. My proudest achievement is badminton — college men's doubles champion, that's no joke haha. I'm also constantly learning about AI and machine learning.", zh: '我比较擅长 Python 编程，现在在量化金融部门实习就是干这个。羽毛球是我的骄傲——院赛男双冠军，这个含金量还是有的哈哈。另外对 AI 和机器学习也一直在学。' }
     },
     {
-      keys: ['将来', '未来', '打算', '计划', '毕业后', '去哪', '准备', 'future', 'plans', 'after graduation', 'next'],
+      keys: ['将来', '未来', '打算', '计划', '毕业后', '去哪', '准备', '考研', '出国', '留学', 'future', 'plans', 'after graduation', 'next', 'graduate school'],
       reply: { en: "My plan is to apply for graduate school in the US, focusing on AI. Long-term I want to dig deep into the AI field and build something truly valuable.", zh: '我的计划是申请美国的研究生，专攻 AI 方向。长远来看想在 AI 领域深耕，做点真正有价值的东西。' }
     },
     {
-      keys: ['最近在做什么', '最近', '现在', '目前', 'recently', 'currently', 'what are you doing'],
+      keys: ['最近在做什么', '最近', '现在', '目前', '忙什么', 'recently', 'currently', 'what are you doing', 'what are you up to'],
       reply: { en: "Recently I've been interning at Sinolink Securities, doing Python development related to quantitative finance derivatives. I'm also independently building several projects using Vibe Coding — the efficiency boost is remarkable.", zh: '最近我在国金证券实习，主要负责一些 Python 开发工作，涉及量化金融衍生开发相关的内容。同时我也在用 Vibe Coding 的方式独立开发几个项目，感觉效率提升了不少。' }
     },
     {
-      keys: ['人生目标', '目标', '梦想', '理想', '志向', '想要', 'life goal', 'dream', 'ambition', 'purpose'],
+      keys: ['人生目标', '目标', '梦想', '理想', '志向', '想要', 'life goal', 'dream', 'ambition', 'purpose', 'aspiration'],
       reply: { en: "Technically, I want to make a mark in the AI field. In life, I want to stay curious about the world — playing sports, traveling, cooking, gaming — these are what give life texture.", zh: '技术层面，我想在 AI 领域有所建树；生活层面，我希望保持对世界的好奇心——打球、旅行、做饭、打游戏，都是我觉得让生活有质感的方式。' }
     },
     {
-      keys: ['实习', '工作', '国金', '量化', '证券', '公司', '上班', 'internship', 'work', 'job', 'company'],
+      keys: ['实习', '工作', '国金', '量化', '证券', '公司', '上班', 'internship', 'work', 'job', 'company', 'occupation', 'where do you work'],
       reply: { en: "I'm interning at Sinolink Securities' quantitative finance department, mainly using Python for development — data processing and strategy-related work. This experience gave me a much more practical understanding of finance + AI combined.", zh: '我现在在国金证券量化金融部门实习，主要用 Python 做开发，涉及数据处理和策略相关的工作。这段经历让我对金融 + AI 的结合有了更实际的理解。' }
     },
     {
-      keys: ['羽毛球', '球', '运动', '体育', '冠军', 'badminton', 'sport'],
+      keys: ['羽毛球', '球', '运动', '体育', '冠军', 'badminton', 'sport', 'exercise', 'physical'],
       reply: { en: "Badminton is one of my biggest hobbies! College men's doubles champion — I'm pretty proud of that. I'll hang out with friends to play when I'm free. Great for exercise and stress relief.", zh: '羽毛球是我最大的爱好之一！院赛男双冠军，这个经历我还是挺拿得出手的。平时有空就会约朋友打，既锻炼身体又解压。' }
     },
     {
-      keys: ['钢琴', '音乐', '弹琴', 'piano', 'music'],
+      keys: ['钢琴', '音乐', '弹琴', 'piano', 'music', 'instrument'],
       reply: { en: "I can play piano — it's been a hobby since elementary school. I don't practice as much as before, but I'll still play when I have free time to relax.", zh: '我会弹钢琴，算是从小学起的兴趣。现在没有以前练得勤，但闲下来还是会弹弹，给自己放松一下。' }
     },
     {
-      keys: ['游戏', 'CS2', '死亡搁浅', '打游戏', 'Steam', 'game', 'gaming', 'play'],
+      keys: ['游戏', 'CS2', '死亡搁浅', '打游戏', 'Steam', 'game', 'gaming', 'play', 'videogame'],
       reply: { en: "I mainly play CS2 and Death Stranding. CS2 is competitive and exciting; Death Stranding is the complete opposite — a unique immersive experience. I love that lonely yet healing feeling.", zh: '我主玩 CS2 和 Death Stranding。CS2 是竞技向，比较刺激；Death Stranding 则完全相反，是一种很独特的沉浸体验，我很喜欢那种孤独又治愈的感觉。' }
     },
     {
-      keys: ['做饭', '烹饪', '厨艺', '美食', '做菜', 'cooking', 'cook', 'food', 'cuisine'],
+      keys: ['做饭', '烹饪', '厨艺', '美食', '做菜', 'cooking', 'cook', 'food', 'cuisine', 'kitchen'],
       reply: { en: "I really enjoy cooking. I feel like cooking and coding are similar — both require logic but leave room for creativity. The satisfaction of making a good dish is pretty real haha.", zh: '我挺喜欢做饭的，感觉做菜和写代码有点像——都需要逻辑，但又有创意空间。做好一道菜的满足感挺真实的哈哈。' }
     },
     {
-      keys: ['旅游', '旅行', '去过', '哪里', '玩', 'travel', 'traveled', 'visited', 'where'],
+      keys: ['旅游', '旅行', '去过', '哪里', '玩', 'travel', 'traveled', 'visited', 'where', 'trip', 'vacation'],
       reply: { en: "I love traveling — exploring new places and experiencing different cultures is a really important experience for me. After going to the US for grad school, I hope to travel even more.", zh: '我很喜欢旅行，探索新地方、感受不同文化对我来说是很重要的体验。去美国读研之后也希望能多走走。' }
     },
     {
-      keys: ['学校', '暨南', '大学', '专业', '读书', '伯明翰', 'school', 'university', 'major', 'study', 'education'],
+      keys: ['学校', '暨南', '大学', '专业', '读书', '伯明翰', '学习', 'school', 'university', 'major', 'study', 'education', 'campus'],
       reply: { en: "I study Information and Computing Science at Jinan University — this major has given me a solid foundation in math and computer science. Jinan University is in Guangzhou and the campus is pretty nice.", zh: '我在暨南大学读信息与计算科学，这个专业让我打下了扎实的数学和计算机基础。暨大在广州，校园环境挺好的。' }
     },
     {
-      keys: ['你好', 'hello', 'hi', '嗨', '在吗', '哈喽', 'hey', 'greetings'],
+      keys: ['你好', 'hello', 'hi', '嗨', '在吗', '哈喽', 'hey', 'greetings', '你好呀'],
       reply: { en: "Hi! Feel free to ask me anything you'd like to know, I'll give you a real answer~", zh: '你好！有什么想了解的尽管问，我会认真回答的~' }
     },
     {
-      keys: ['vibe', 'coding', '项目', '开发', '副业', 'AI 辅助', 'side project', 'develop'],
+      keys: ['vibe', 'coding', '项目', '开发', '副业', 'AI 辅助', 'side project', 'develop', 'vibe coding', 'programming'],
       reply: { en: "I've been using Vibe Coding — AI-assisted programming — to independently build several projects recently. The efficiency improvement is incredibly obvious. I think this is an important way of developing in the future, and I'm really enjoying the process.", zh: '我最近在用 Vibe Coding 的方式——也就是 AI 辅助编程——独立开发几个项目，效率提升非常明显。我觉得这是未来开发的重要方式，很享受这个过程。' }
     },
     {
-      keys: ['联系方式', '电话', '邮箱', '邮件', '联系', '微信', '加好友', 'contact', 'email', 'phone', 'reach'],
+      keys: ['联系方式', '电话', '邮箱', '邮件', '联系', '微信', '加好友', 'contact', 'email', 'phone', 'reach', 'how to reach'],
       reply: { en: "You can see my contact info at the top of the page~ Phone: +86 17725633824, Email: kiomin18@gmail.com. Feel free to reach out directly!", zh: '联系方式在页面上方就能看到哦~ 电话是 +86 17725633824，邮箱是 kiomin18@gmail.com。有什么事可以直接联系我！' }
     },
     {
-      keys: ['学历', '学校', '读书', '专业', '学什么', 'degree', 'education', 'what do you study'],
+      keys: ['学历', '学位', '本科', '学士', 'gpa', 'degree', 'education', 'what do you study', 'academic'],
       reply: { en: "I'm currently studying Information and Computing Science at Jinan University, and I'm planning to go to the US for graduate school in AI.", zh: '我目前在暨南大学读信息与计算科学，未来准备赴美攻读 AI 方向的研究生。' }
+    },
+    {
+      keys: ['ai', '人工智能', 'machine learning', '机器学习', 'deep learning', '深度学习', '模型', 'model'],
+      reply: { en: "AI is my main area of interest — I've worked with ViT, Swin Transformer, and GLIP for computer vision tasks, and explored explainable AI methods like SHAP and LIME. It's a rapidly evolving field and I'm excited to keep learning.", zh: 'AI 是我主要的兴趣方向——我用过 ViT、Swin Transformer 和 GLIP 做计算机视觉任务，也研究过 SHAP、LIME 等可解释 AI 方法。这是一个快速发展的领域，我很期待继续深入。' }
+    },
+    {
+      keys: ['你能做什么', 'can you', 'help me', 'what do you', '你可以', '帮忙', '帮忙吗'],
+      reply: { en: "I can tell you about Li Hong's background, projects, hobbies, and plans. Just ask me anything — I'm here to help!", zh: '我可以告诉你关于李泓的学习经历、项目作品、兴趣爱好和未来规划。随便问我什么都行！' }
     }
   ];
 
@@ -1396,12 +1404,16 @@
   };
 
   async function getReplyFromBackend(text) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
     try {
       const response = await fetch('https://my-site-backend-08uu.onrender.com/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: text })
+        body: JSON.stringify({ question: text }),
+        signal: controller.signal
       });
+      clearTimeout(timeout);
       const data = await response.json();
       return data.reply;
     } catch (error) {
