@@ -349,19 +349,26 @@
 
     .info-item {}
 
-    /* Clickable advantage items (01-03) */
+    /* Clickable advantage items (01-03) — breathing glow cards */
     .info-item.linkable {
+      position: relative;
       cursor: pointer;
-      transition: all 0.25s ease;
-      padding: 8px 12px;
-      margin: -8px -12px 0;
-      border-radius: 8px;
+      transition: all 0.3s ease;
+      padding: 14px 16px;
+      border: 1.5px solid rgba(184,217,238,0.5);
+      border-radius: 12px;
+      background: rgba(235,244,250,0.45);
+      animation: cardPulse 3s ease-in-out infinite;
     }
 
     .info-item.linkable:hover {
-      background: rgba(106,175,212,0.06);
-      box-shadow: 0 2px 12px rgba(44,125,160,0.08);
-      transform: translateX(4px);
+      animation-play-state: paused;
+      background: rgba(106,175,212,0.08);
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 6px rgba(106,175,212,0.18),
+                  0 6px 24px rgba(44,125,160,0.18),
+                  0 0 12px rgba(106,175,212,0.25);
+      transform: translateX(6px) scale(1.01);
     }
 
     .info-item.linkable::after {
@@ -382,11 +389,21 @@
       transform: translateY(-50%) translateX(4px);
     }
 
-    .info-item.linkable { position: relative; }
-
     /* Non-clickable advantages (04-05) — subtle hint effect */
     .info-item.nolink:hover {
       background: rgba(142,155,170,0.04);
+    }
+
+    /* Breathing glow pulse for clickable advantage items */
+    @keyframes cardPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(106,175,212,0),
+                    0 2px 8px rgba(44,125,160,0.06);
+      }
+      50% {
+        box-shadow: 0 0 0 4px rgba(106,175,212,0.15),
+                    0 4px 16px rgba(44,125,160,0.12);
+      }
     }
 
     /* Highlight flash on target project card */
@@ -681,9 +698,9 @@
       gap: 10px;
       text-decoration: none;
       color: var(--grey-soft);
-      font-size: 0.78rem;
+      font-size: 0.9rem;
       font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.5px;
       transition: all 0.25s ease;
       padding: 4px 0;
@@ -695,8 +712,8 @@
     }
 
     .nav-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       border: 1.5px solid var(--grey-soft);
       background: transparent;
@@ -821,6 +838,12 @@
       .section { padding: 22px 18px; }
       .chat-messages { max-height: 260px; }
       .msg-bubble { max-width: 82%; }
+      .info-item.linkable { padding: 16px 14px; }
+      @keyframes cardPulseMobile {
+        0%, 100% { box-shadow: 0 0 0 2px rgba(106,175,212,0), 0 2px 8px rgba(44,125,160,0.06); }
+        50%      { box-shadow: 0 0 0 2px rgba(106,175,212,0.12), 0 4px 16px rgba(44,125,160,0.12); }
+      }
+      .info-item.linkable { animation-name: cardPulseMobile; }
     }
 
     /* ===== PROJECTS SECTION ===== */
