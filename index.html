@@ -363,11 +363,11 @@
 
     .info-item.linkable:hover {
       animation-play-state: paused;
-      background: rgba(106,175,212,0.08);
-      border-color: var(--blue-mid);
-      box-shadow: 0 0 0 6px rgba(106,175,212,0.18),
-                  0 6px 24px rgba(44,125,160,0.18),
-                  0 0 12px rgba(106,175,212,0.25);
+      background: rgba(232,132,92,0.06);
+      border-color: #E8845C;
+      box-shadow: 0 0 0 6px rgba(232,132,92,0.2),
+                  0 6px 24px rgba(232,132,92,0.15),
+                  0 0 14px rgba(232,132,92,0.25);
       transform: translateX(6px) scale(1.01);
     }
 
@@ -377,7 +377,7 @@
       right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--blue-mid);
+      color: #E8845C;
       opacity: 0;
       transition: opacity 0.25s, transform 0.25s;
       font-size: 1rem;
@@ -394,15 +394,15 @@
       background: rgba(142,155,170,0.04);
     }
 
-    /* Breathing glow pulse for clickable advantage items */
+    /* Breathing glow pulse for clickable advantage items (warm coral-orange) */
     @keyframes cardPulse {
       0%, 100% {
-        box-shadow: 0 0 0 0 rgba(106,175,212,0),
+        box-shadow: 0 0 0 0 rgba(232,132,92,0),
                     0 2px 8px rgba(44,125,160,0.06);
       }
       50% {
-        box-shadow: 0 0 0 4px rgba(106,175,212,0.15),
-                    0 4px 16px rgba(44,125,160,0.12);
+        box-shadow: 0 0 0 4px rgba(232,132,92,0.2),
+                    0 4px 16px rgba(232,132,92,0.1);
       }
     }
 
@@ -840,8 +840,8 @@
       .msg-bubble { max-width: 82%; }
       .info-item.linkable { padding: 16px 14px; }
       @keyframes cardPulseMobile {
-        0%, 100% { box-shadow: 0 0 0 2px rgba(106,175,212,0), 0 2px 8px rgba(44,125,160,0.06); }
-        50%      { box-shadow: 0 0 0 2px rgba(106,175,212,0.12), 0 4px 16px rgba(44,125,160,0.12); }
+        0%, 100% { box-shadow: 0 0 0 2px rgba(232,132,92,0), 0 2px 8px rgba(44,125,160,0.06); }
+        50%      { box-shadow: 0 0 0 2px rgba(232,132,92,0.15), 0 4px 16px rgba(232,132,92,0.08); }
       }
       .info-item.linkable { animation-name: cardPulseMobile; }
     }
