@@ -1434,9 +1434,7 @@
     return pool[Math.floor(Math.random() * pool.length)];
   }
 
-  async function getReply(text) {
-    const backendReply = await getReplyFromBackend(text);
-    if (backendReply) return backendReply;
+  function getReply(text) {
     return getReplyFromKB(text);
   }
 
